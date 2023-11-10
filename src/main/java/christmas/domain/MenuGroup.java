@@ -17,7 +17,11 @@ public enum MenuGroup {
         MenuDetail.CHOCOLATE_CAKE,
         MenuDetail.ICE_CREAM
     )),
-    DRINK("음료", List.of());
+    DRINK("음료", Arrays.asList(
+        MenuDetail.ZERO_COLA,
+        MenuDetail.RED_WINE,
+        MenuDetail.CHAMPAGNE
+    ));
 
     private String title;
     private List<MenuDetail> menuDetails;

@@ -9,7 +9,10 @@ public enum MenuDetail {
     SEAFOOD_PASTA("해산물파스타", new Money(35000)),
     CHRISTMAS_PASTA("크리스마스파스타", new Money(25000)),
     CHOCOLATE_CAKE("초코케이크", new Money(15000)),
-    ICE_CREAM("아이스크림", new Money(5000));
+    ICE_CREAM("아이스크림", new Money(5000)),
+    ZERO_COLA("제로콜라", new Money(3000)),
+    RED_WINE("레드와인", new Money(60000)),
+    CHAMPAGNE("샴페인", new Money(25000));
 
     private String title;
     private Money price;

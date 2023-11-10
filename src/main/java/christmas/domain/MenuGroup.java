@@ -13,7 +13,11 @@ public enum MenuGroup {
         MenuDetail.BARBECUE_RIBS,
         MenuDetail.SEAFOOD_PASTA,
         MenuDetail.CHRISTMAS_PASTA)),
-    DESSERT("디저트", List.of()), DRINK("음료", List.of());
+    DESSERT("디저트", Arrays.asList(
+        MenuDetail.CHOCOLATE_CAKE,
+        MenuDetail.ICE_CREAM
+    )),
+    DRINK("음료", List.of());
 
     private String title;
     private List<MenuDetail> menuDetails;

@@ -21,4 +21,17 @@ class OrderTest {
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessageContaining("[ERROR]");
     }
+
+    @DisplayName("음료만 주문할 경우 예외가 발생한다")
+    @Test
+    void createOrderByOnlyDrinks() {
+        List<OrderLine> orderLines = List.of(
+            new OrderLine(MenuDetail.ZERO_COLA, 3),
+            new OrderLine(MenuDetail.CHAMPAGNE, 1)
+        );
+
+        assertThatThrownBy(() -> new Order(orderLines))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessageContaining("[ERROR] 음료만 주문할 수 없습니다.");
+    }
 }

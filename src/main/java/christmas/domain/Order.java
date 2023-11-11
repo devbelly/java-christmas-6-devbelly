@@ -12,7 +12,7 @@ public class Order {
 
     public Order(List<OrderLine> orderLines) {
         validateAtLeastOneOrderLine(orderLines);
-
+        validateTotalQuantity(orderLines);
         this.orderLines = orderLines;
     }
 
@@ -22,12 +22,12 @@ public class Order {
         }
     }
 
-    private void validateTotalQuantity() {
+    private void validateTotalQuantity(List<OrderLine> orderLines) {
         int totalQuantity = orderLines.stream()
             .mapToInt(OrderLine::getQuantity)
             .sum();
 
-        if (totalQuantity < MAX_QUANTITY) {
+        if (totalQuantity > MAX_QUANTITY) {
             throw new IllegalArgumentException(TOO_MANY_ORDERLINE_QUANTITY_ERROR_MESSAGE);
         }
     }

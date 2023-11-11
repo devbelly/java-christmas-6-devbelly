@@ -18,6 +18,13 @@ public class Order {
         this.orderLines = orderLines;
     }
 
+    public Money getTotalAmounts() {
+        return orderLines.stream()
+            .map(OrderLine::getAmounts)
+            .reduce(Money::plus)
+            .get();
+    }
+
     private void validateAtLeastOneOrderLine(List<OrderLine> orderLines) {
         if (orderLines == null || orderLines.isEmpty()) {
             throw new IllegalArgumentException(INSUFFICIENT_ORDERLINE_ERROR_MESSAGE);

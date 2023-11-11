@@ -18,6 +18,10 @@ public class Money {
         return new Money(value * multiplier);
     }
 
+    public Money plus(Money input) {
+        return new Money(value + input.value);
+    }
+
     @Override
     public String toString() {
         return Integer.toString(value);

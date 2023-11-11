@@ -23,11 +23,24 @@ public enum MenuGroup {
         MenuDetail.CHAMPAGNE
     ));
 
+    private static final String MENU_GROUP_NOT_FOUND_ERROR_MESSAGE = "[ERROR] 메뉴를 확인해주세요.";
+
     private String title;
     private List<MenuDetail> menuDetails;
 
     MenuGroup(String title, List<MenuDetail> menuDetails) {
         this.title = title;
         this.menuDetails = menuDetails;
+    }
+
+    public static MenuGroup findByMenuDetail(MenuDetail menuDetail) {
+        return Arrays.stream(MenuGroup.values())
+            .filter(menuGroup -> menuGroup.hasMenuDetail(menuDetail))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException(MENU_GROUP_NOT_FOUND_ERROR_MESSAGE));
+    }
+
+    public boolean hasMenuDetail(MenuDetail menuDetail) {
+        return menuDetails.contains(menuDetail);
     }
 }

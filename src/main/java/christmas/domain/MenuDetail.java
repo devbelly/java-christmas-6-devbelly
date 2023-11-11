@@ -21,4 +21,8 @@ public enum MenuDetail {
         this.title = title;
         this.price = price;
     }
+
+    public Money calculateAmounts(int quantity) {
+        return price.multiply(quantity);
+    }
 }

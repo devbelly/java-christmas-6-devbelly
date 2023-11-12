@@ -1,5 +1,8 @@
 package christmas.domain;
 
+import static christmas.domain.MenuDiscountType.WEEKDAYS;
+import static christmas.domain.MenuDiscountType.WEEKENDS;
+
 import java.time.LocalDate;
 
 public class MenuDiscount {
@@ -15,13 +18,19 @@ public class MenuDiscount {
     private static final MenuDiscount WEEKDAYS_DISCOUNT =
         new MenuDiscount(new Money(2023), MenuDiscountType.WEEKDAYS);
 
+    private static final MenuDiscount WEEKENDS_DISCOUNT =
+        new MenuDiscount(new Money(2023), MenuDiscountType.WEEKENDS);
+
     private static final MenuDiscount NONE = new MenuDiscount(Money.ZERO, MenuDiscountType.NONE);
 
     public static MenuDiscount of(OrderLine orderLine, LocalDate localDate) {
         MenuDiscountType type = MenuDiscountType.findByLocalDate(localDate);
 
-        if (type == MenuDiscountType.WEEKDAYS && orderLine.isDessert()) {
+        if (type == WEEKDAYS && orderLine.isDessert()) {
             return WEEKDAYS_DISCOUNT;
+        }
+        if (type == WEEKENDS && orderLine.isMain()) {
+            return WEEKENDS_DISCOUNT;
         }
         return NONE;
     }

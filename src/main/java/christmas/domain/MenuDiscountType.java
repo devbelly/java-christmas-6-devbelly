@@ -11,7 +11,7 @@ public enum MenuDiscountType {
     WEEKDAYS(IntStream.range(1, 31 + 1).boxed().toList(),
         List.of(DayOfWeek.SUNDAY, DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
             DayOfWeek.THURSDAY)),
-    WEEKENDS(List.of(), List.of()),
+    WEEKENDS(IntStream.range(1, 31 + 1).boxed().toList(), List.of()),
     NONE(List.of(), List.of());
 
     List<Integer> days;

@@ -25,6 +25,10 @@ public class OrderLine {
         return MenuGroup.findByMenuDetail(menuDetail) == MenuGroup.DRINK;
     }
 
+    public boolean isDessert() {
+        return MenuGroup.findByMenuDetail(menuDetail) == MenuGroup.DESSERT;
+    }
+
     private void validateAtLeastOneQuantity(int quantity) {
         if (quantity < 1) {
             throw new IllegalArgumentException(INSUFFICIENT_QUANTITY_ERROR_MESSAGE);

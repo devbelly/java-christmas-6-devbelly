@@ -1,5 +1,5 @@
 package christmas.domain;
 
 public enum MenuDiscountType {
-    WEEKDAYS, WEEKENDS
+    WEEKDAYS, WEEKENDS, NONE
 }

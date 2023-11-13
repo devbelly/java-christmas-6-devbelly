@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.EventBadge;
 import christmas.domain.Money;
 import christmas.domain.Order;
 import christmas.domain.OrderLine;
@@ -7,6 +8,7 @@ import christmas.domain.PresentItem;
 import christmas.dtos.BenefitDto;
 import java.time.LocalDate;
 import java.util.List;
+import jdk.jfr.Event;
 
 public class OutputView {
 
@@ -31,6 +33,8 @@ public class OutputView {
     private static final String TOTAL_BENEFITS_AMOUNTS = "<총혜택 금액>";
 
     private static final String TOTAL_AMOUNTS_AFTER_DISCOUNT = "<할인 후 예상 결제 금액>";
+
+    private static final String DECEMBER_EVENT_BADGE = "<12월 이벤트 뱃지>";
 
     private OutputView() {
     }
@@ -112,6 +116,12 @@ public class OutputView {
     public static void printAmountToPay(Money money) {
         System.out.println(TOTAL_AMOUNTS_AFTER_DISCOUNT);
         printMoney(money);
+        printEmptyLine();
+    }
+
+    public static void printEventBadge(EventBadge badge) {
+        System.out.println(DECEMBER_EVENT_BADGE);
+        System.out.println(badge.getTitle());
         printEmptyLine();
     }
 

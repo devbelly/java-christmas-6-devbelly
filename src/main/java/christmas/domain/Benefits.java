@@ -51,4 +51,8 @@ public class Benefits {
             .map(benefitType -> new Money(benefits.get(benefitType)))
             .reduce(new Money(0), Money::plus);
     }
+
+    public EventBadge getEventBadge() {
+        return EventBadge.findByMoney(getTotalBenefitsAmounts().getValue());
+    }
 }

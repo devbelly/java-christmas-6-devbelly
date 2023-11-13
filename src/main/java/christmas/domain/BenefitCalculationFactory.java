@@ -12,8 +12,10 @@ public class BenefitCalculationFactory {
         }
         Benefits benefits = new Benefits();
 
+        MenuDiscounts menuDiscounts = MenuDiscountsFactory.create(order, date);
         TotalDiscounts totalDiscounts = TotalDiscountsFactory.create(date);
 
+        benefits.updateMenuDiscounts(menuDiscounts);
         benefits.updateTotalDiscounts(totalDiscounts);
         benefits.updatePresent(order);
         return benefits;

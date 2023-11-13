@@ -13,6 +13,11 @@ public class Benefits {
         }
     }
 
+    public void updateMenuDiscounts(MenuDiscounts menuDiscounts) {
+        benefits.put(BenefitType.WEEKDAYS, menuDiscounts.sumOfWeekDaysDiscounts().getValue());
+        benefits.put(BenefitType.WEEKENDS, menuDiscounts.sumOfWeekendsDiscounts().getValue());
+    }
+
     public void updateTotalDiscounts(TotalDiscounts totalDiscounts) {
         benefits.put(BenefitType.SPECIAL, totalDiscounts.sumOfSpecialDiscounts().getValue());
         benefits.put(BenefitType.CHRISTMAS_D_DAY,

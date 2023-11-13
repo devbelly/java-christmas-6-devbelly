@@ -24,6 +24,10 @@ public class Money {
         return new Money(value + input.value);
     }
 
+    public Money minus(Money input) {
+        return new Money(value - input.value);
+    }
+
     public boolean isLessThan(Money input) {
         return value < input.value;
     }

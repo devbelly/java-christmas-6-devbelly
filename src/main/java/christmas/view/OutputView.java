@@ -19,6 +19,7 @@ public class OutputView {
     private static final String ORDER_MENU = "<주문 내역>";
 
     private static final String TOTAL_AMOUNTS_BEFORE_DISCOUNT = "<할인 전 총주문 금액>";
+
     private static final String WON = "%.d원";
 
     private static final String PRESENT_MENU = "<증정 메뉴>";
@@ -28,6 +29,8 @@ public class OutputView {
     private static final String BENEFIT_DETAIL = "%s: -%.d원";
 
     private static final String TOTAL_BENEFITS_AMOUNTS = "<총혜택 금액>";
+
+    private static final String TOTAL_AMOUNTS_AFTER_DISCOUNT = "<할인 후 예상 결제 금액>";
 
     private OutputView() {
     }
@@ -102,6 +105,12 @@ public class OutputView {
         if (!money.equals(Money.ZERO)) {
             System.out.print("-");
         }
+        printMoney(money);
+        printEmptyLine();
+    }
+
+    public static void printAmountToPay(Money money) {
+        System.out.println(TOTAL_AMOUNTS_AFTER_DISCOUNT);
         printMoney(money);
         printEmptyLine();
     }

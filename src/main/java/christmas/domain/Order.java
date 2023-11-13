@@ -51,4 +51,8 @@ public class Order {
     public List<OrderLine> getOrderLines() {
         return Collections.unmodifiableList(orderLines);
     }
+
+    public Money getAmountToPay(Money discountAmounts) {
+        return getTotalAmounts().minus(discountAmounts);
+    }
 }

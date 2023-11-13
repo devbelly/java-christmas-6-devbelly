@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Order {
@@ -45,5 +46,9 @@ public class Order {
         if (orderLines.stream().allMatch(OrderLine::isDrink)) {
             throw new IllegalArgumentException(ONLY_DRINKS_ERROR_MESSAGE);
         }
+    }
+
+    public List<OrderLine> getOrderLines() {
+        return Collections.unmodifiableList(orderLines);
     }
 }

@@ -22,13 +22,13 @@ public class OutputView {
 
     private static final String TOTAL_AMOUNTS_BEFORE_DISCOUNT = "<할인 전 총주문 금액>";
 
-    private static final String WON = "%.d원";
+    private static final String WON = "%,d원";
 
     private static final String PRESENT_MENU = "<증정 메뉴>";
 
     private static final String BENEFIT_MENU = "<혜택 내역>";
 
-    private static final String BENEFIT_DETAIL = "%s: -%.d원";
+    private static final String BENEFIT_DETAIL = "%s: -%,d원";
 
     private static final String TOTAL_BENEFITS_AMOUNTS = "<총혜택 금액>";
 

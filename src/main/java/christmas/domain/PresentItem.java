@@ -26,4 +26,8 @@ public enum PresentItem {
     public int getPrice() {
         return price;
     }
+
+    public String getTitle() {
+        return title;
+    }
 }

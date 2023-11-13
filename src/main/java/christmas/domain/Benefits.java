@@ -29,4 +29,9 @@ public class Benefits {
         PresentItem presentItem = PresentItem.findByTotalPrice(money.getValue());
         benefits.putIfAbsent(BenefitType.PRESENT, presentItem.getPrice());
     }
+
+    public PresentItem getPresent() {
+        int money = benefits.get(BenefitType.PRESENT);
+        return PresentItem.findByTotalPrice(money);
+    }
 }

@@ -3,6 +3,7 @@ package christmas.view;
 import christmas.domain.Money;
 import christmas.domain.Order;
 import christmas.domain.OrderLine;
+import christmas.domain.PresentItem;
 import java.time.LocalDate;
 
 public class OutputView {
@@ -17,6 +18,8 @@ public class OutputView {
 
     private static final String TOTAL_AMOUNTS_BEFORE_DISCOUNT = "<할인 전 총주문 금액>";
     private static final String WON = "%.d원";
+
+    private static final String PRESENT_MENU = "<증정 메뉴>";
 
     private OutputView() {
     }
@@ -64,6 +67,16 @@ public class OutputView {
 
     public static void printEmptyLine() {
         System.out.println();
+    }
+
+    public static void printPresentMenu(PresentItem presentItem) {
+        System.out.println(PRESENT_MENU);
+        String presentItemTitle = presentItem.getTitle();
+        if (presentItem != PresentItem.NONE) {
+            presentItemTitle.concat(" 1개");
+        }
+        System.out.println(presentItemTitle);
+        printEmptyLine();
     }
 
     private static void printMoney(Money money) {

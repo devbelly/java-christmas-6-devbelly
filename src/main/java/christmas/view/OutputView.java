@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.Money;
 import christmas.domain.Order;
 import christmas.domain.OrderLine;
 import java.time.LocalDate;
@@ -13,6 +14,9 @@ public class OutputView {
     private static final String BENEFIT_PREVIEW_MESSAGE = "%d월 %d일 에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n";
 
     private static final String ORDER_MENU = "<주문 내역>";
+
+    private static final String TOTAL_AMOUNTS_BEFORE_DISCOUNT = "<할인 전 총주문 금액>";
+    private static final String WON = "%.d원";
 
     private OutputView() {
     }
@@ -47,6 +51,12 @@ public class OutputView {
 
     }
 
+    public static void printTotalAmountsBeforeDiscount(Order order) {
+        System.out.println(TOTAL_AMOUNTS_BEFORE_DISCOUNT);
+        System.out.println(order.getTotalAmounts());
+        printEmptyLine();
+    }
+
     private static void printOrderLine(OrderLine orderLine) {
         System.out.println(
             orderLine.getMenuDetail().getTitle() + "  " + orderLine.getQuantity() + "개");
@@ -54,5 +64,9 @@ public class OutputView {
 
     public static void printEmptyLine() {
         System.out.println();
+    }
+
+    private static void printMoney(Money money) {
+        System.out.println(WON.formatted(money.getValue()));
     }
 }

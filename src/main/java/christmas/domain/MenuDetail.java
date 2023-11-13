@@ -47,4 +47,8 @@ public enum MenuDetail {
     public Money calculateAmounts(int quantity) {
         return price.multiply(quantity);
     }
+
+    public String getTitle() {
+        return title;
+    }
 }

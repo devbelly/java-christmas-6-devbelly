@@ -38,4 +38,8 @@ public class OrderLine {
             throw new IllegalArgumentException(INSUFFICIENT_QUANTITY_ERROR_MESSAGE);
         }
     }
+
+    public MenuDetail getMenuDetail() {
+        return menuDetail;
+    }
 }

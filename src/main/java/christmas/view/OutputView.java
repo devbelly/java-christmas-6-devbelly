@@ -12,6 +12,8 @@ public class OutputView {
 
     private static final String BENEFIT_PREVIEW_MESSAGE = "%d월 %d일 에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n";
 
+    private static final String ORDER_MENU = "<주문 내역>";
+
     private OutputView() {
     }
 
@@ -35,5 +37,22 @@ public class OutputView {
         System.out.println(
             BENEFIT_PREVIEW_MESSAGE.formatted(date.getMonthValue(), date.getDayOfMonth())
         );
+    }
+
+    public static void printOrderMenu(Order order) {
+        System.out.println(ORDER_MENU);
+        order.getOrderLines()
+            .forEach(OutputView::printOrderLine);
+        printEmptyLine();
+
+    }
+
+    private static void printOrderLine(OrderLine orderLine) {
+        System.out.println(
+            orderLine.getMenuDetail().getTitle() + "  " + orderLine.getQuantity() + "개");
+    }
+
+    public static void printEmptyLine() {
+        System.out.println();
     }
 }

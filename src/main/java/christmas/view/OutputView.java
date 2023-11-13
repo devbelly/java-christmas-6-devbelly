@@ -4,7 +4,9 @@ import christmas.domain.Money;
 import christmas.domain.Order;
 import christmas.domain.OrderLine;
 import christmas.domain.PresentItem;
+import christmas.dtos.BenefitDto;
 import java.time.LocalDate;
+import java.util.List;
 
 public class OutputView {
 
@@ -20,6 +22,10 @@ public class OutputView {
     private static final String WON = "%.d원";
 
     private static final String PRESENT_MENU = "<증정 메뉴>";
+
+    private static final String BENEFIT_MENU = "<혜택 내역>";
+
+    private static final String BENEFIT_DETAIL = "%s: -%.d원";
 
     private OutputView() {
     }
@@ -79,7 +85,22 @@ public class OutputView {
         printEmptyLine();
     }
 
+    public static void printBenefits(List<BenefitDto> dtos) {
+        System.out.println(BENEFIT_MENU);
+        if (dtos.isEmpty()) {
+            System.out.println("없음");
+            return;
+        }
+        dtos.forEach(OutputView::printBenefit);
+        printEmptyLine();
+    }
+
     private static void printMoney(Money money) {
         System.out.println(WON.formatted(money.getValue()));
+    }
+
+    private static void printBenefit(BenefitDto dto) {
+        String title = dto.getBenefitType().getTitle();
+        System.out.println(BENEFIT_DETAIL.formatted(title, dto.getDiscountAmount()));
     }
 }

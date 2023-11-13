@@ -1,6 +1,8 @@
 package christmas.domain;
 
+import christmas.dtos.BenefitDto;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Benefits {
@@ -33,5 +35,13 @@ public class Benefits {
     public PresentItem getPresent() {
         int money = benefits.get(BenefitType.PRESENT);
         return PresentItem.findByTotalPrice(money);
+    }
+
+    public List<BenefitDto> getBenefitDtos() {
+        return benefits.keySet()
+            .stream()
+            .filter(benefitType -> benefits.get(benefitType) > 0)
+            .map(benefitType -> BenefitDto.toDto(benefitType, benefits.get(benefitType)))
+            .toList();
     }
 }

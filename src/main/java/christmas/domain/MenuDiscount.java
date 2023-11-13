@@ -34,4 +34,16 @@ public class MenuDiscount {
         }
         return NONE;
     }
+
+    public boolean isWeekdays() {
+        return type == WEEKDAYS;
+    }
+
+    public boolean isWeekends() {
+        return type == WEEKENDS;
+    }
+
+    public Money getMoney() {
+        return money;
+    }
 }

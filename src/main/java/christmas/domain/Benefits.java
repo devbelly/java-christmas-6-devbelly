@@ -12,4 +12,10 @@ public class Benefits {
             benefits.put(benefitType, 0);
         }
     }
+
+    public void updatePresent(Order order) {
+        Money money = order.getTotalAmounts();
+        PresentItem presentItem = PresentItem.findByTotalPrice(money.getValue());
+        benefits.putIfAbsent(BenefitType.PRESENT, presentItem.getPrice());
+    }
 }

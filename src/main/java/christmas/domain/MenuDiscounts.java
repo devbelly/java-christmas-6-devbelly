@@ -18,4 +18,11 @@ public class MenuDiscounts {
             .map(MenuDiscount::getMoney)
             .reduce(Money.ZERO, Money::plus);
     }
+
+    public Money sumOfWeekendsDiscounts() {
+        return menuDiscounts.stream()
+            .filter(MenuDiscount::isWeekends)
+            .map(MenuDiscount::getMoney)
+            .reduce(Money.ZERO, Money::plus);
+    }
 }

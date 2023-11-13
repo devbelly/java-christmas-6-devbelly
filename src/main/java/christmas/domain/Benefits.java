@@ -44,4 +44,11 @@ public class Benefits {
             .map(benefitType -> BenefitDto.toDto(benefitType, benefits.get(benefitType)))
             .toList();
     }
+
+    public Money getTotalBenefitsAmounts() {
+        return benefits.keySet()
+            .stream()
+            .map(benefitType -> new Money(benefits.get(benefitType)))
+            .reduce(new Money(0), Money::plus);
+    }
 }

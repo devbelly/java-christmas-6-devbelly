@@ -27,6 +27,8 @@ public class OutputView {
 
     private static final String BENEFIT_DETAIL = "%s: -%.d원";
 
+    private static final String TOTAL_BENEFITS_AMOUNTS = "<총혜택 금액>";
+
     private OutputView() {
     }
 
@@ -92,6 +94,15 @@ public class OutputView {
             return;
         }
         dtos.forEach(OutputView::printBenefit);
+        printEmptyLine();
+    }
+
+    public static void printTotalBenefitsAmounts(Money money) {
+        System.out.println(TOTAL_BENEFITS_AMOUNTS);
+        if (!money.equals(Money.ZERO)) {
+            System.out.print("-");
+        }
+        printMoney(money);
         printEmptyLine();
     }
 

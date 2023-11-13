@@ -4,7 +4,6 @@ import java.util.Objects;
 
 public class Money {
 
-
     public static final Money ZERO = new Money(0);
 
     private int value;
@@ -23,6 +22,10 @@ public class Money {
 
     public Money plus(Money input) {
         return new Money(value + input.value);
+    }
+
+    public boolean isLessThan(Money input) {
+        return value < input.value;
     }
 
     @Override

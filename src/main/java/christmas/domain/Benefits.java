@@ -13,6 +13,12 @@ public class Benefits {
         }
     }
 
+    public void updateTotalDiscounts(TotalDiscounts totalDiscounts) {
+        benefits.put(BenefitType.SPECIAL, totalDiscounts.sumOfSpecialDiscounts().getValue());
+        benefits.put(BenefitType.CHRISTMAS_D_DAY,
+            totalDiscounts.sumOfChristmasDiscounts().getValue());
+    }
+
     public void updatePresent(Order order) {
         Money money = order.getTotalAmounts();
         PresentItem presentItem = PresentItem.findByTotalPrice(money.getValue());

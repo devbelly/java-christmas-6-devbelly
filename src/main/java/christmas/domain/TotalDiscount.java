@@ -11,4 +11,16 @@ public class TotalDiscount {
         this.money = money;
         this.type = type;
     }
+
+    public boolean isSpecial() {
+        return type == TotalDiscountType.SPECIAL;
+    }
+
+    public boolean isChristmasDDay() {
+        return type == TotalDiscountType.CHRISTMAS_D_DAY;
+    }
+
+    public Money getMoney() {
+        return money;
+    }
 }

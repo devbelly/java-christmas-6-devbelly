@@ -9,7 +9,7 @@ public enum BenefitType {
     WEEKENDS(EventPeriod.between(LocalDate.of(2023, 12, 1), LocalDate.of(2023, 12, 31)), "주말 할인"),
     SPECIAL(EventPeriod.between(LocalDate.of(2023, 12, 1), LocalDate.of(2023, 12, 31)), "특별 할인"),
     PRESENT(EventPeriod.between(LocalDate.of(2023, 12, 1), LocalDate.of(2023, 12, 31)), "증정 이벤트"),
-    NONE(EventPeriod.between(LocalDate.of(0, 0, 0), LocalDate.of(0, 0, 0)), "없음");
+    NONE(EventPeriod.between(LocalDate.of(9999, 1, 1), LocalDate.of(9999, 1, 2)), "없음");
 
     private EventPeriod eventPeriod;
     private String title;

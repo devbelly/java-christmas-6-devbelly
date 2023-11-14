@@ -8,7 +8,6 @@ import christmas.domain.PresentItem;
 import christmas.dtos.BenefitDto;
 import java.time.LocalDate;
 import java.util.List;
-import jdk.jfr.Event;
 
 public class OutputView {
 
@@ -98,6 +97,7 @@ public class OutputView {
         System.out.println(BENEFIT_MENU);
         if (dtos.isEmpty()) {
             System.out.println("없음");
+            printEmptyLine();
             return;
         }
         dtos.forEach(OutputView::printBenefit);

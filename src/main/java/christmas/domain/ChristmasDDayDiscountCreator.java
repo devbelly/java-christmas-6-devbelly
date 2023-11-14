@@ -13,7 +13,8 @@ public class ChristmasDDayDiscountCreator implements TotalDiscountCreator {
 
         TotalDiscountType.CHRISTMAS_D_DAY.getDays()
             .forEach(day -> CACHE.put(day,
-                new TotalDiscount(new Money(1000 + day * 100), TotalDiscountType.CHRISTMAS_D_DAY)));
+                new TotalDiscount(new Money(1000 + (day - 1) * 100),
+                    TotalDiscountType.CHRISTMAS_D_DAY)));
     }
 
     @Override

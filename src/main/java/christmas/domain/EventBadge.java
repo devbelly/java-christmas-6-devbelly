@@ -1,5 +1,9 @@
 package christmas.domain;
 
+import static java.util.Comparator.*;
+
+import java.util.Arrays;
+
 public enum EventBadge {
     NONE(0, "없음"), STAR(5000, "별"), TREE(10000, "트리"), SANTA(20000, "산타");
 
@@ -12,16 +16,10 @@ public enum EventBadge {
     }
 
     public static EventBadge findByMoney(int input) {
-        if (input < 5000) {
-            return NONE;
-        }
-        if (input < 10000) {
-            return STAR;
-        }
-        if (input < 20000) {
-            return TREE;
-        }
-        return SANTA;
+        return Arrays.stream(EventBadge.values())
+            .filter(eventBadge -> eventBadge.money <= input)
+            .max(comparingInt(o -> o.money))
+            .orElse(NONE);
     }
 
     public String getTitle() {

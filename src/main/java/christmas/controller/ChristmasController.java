@@ -1,12 +1,35 @@
 package christmas.controller;
 
+import christmas.domain.BenefitCalculationFactory;
+import christmas.domain.Benefits;
+import christmas.domain.EventPlanner;
+import christmas.domain.Order;
+import christmas.domain.OrderLine;
 import christmas.dtos.OrderLineDto;
+import christmas.util.OrderLineMapper;
 import christmas.view.ErrorMessage;
 import christmas.view.InputView;
 import christmas.view.OutputView;
+import java.time.LocalDate;
 import java.util.List;
 
 public class ChristmasController {
+
+    public static void run() {
+        OutputView.printWelcomeMessage();
+        int day = getExpectedVisitDate();
+        List<OrderLineDto> dtos = getOrderLineDtos();
+        List<OrderLine> orderLines = OrderLineMapper.orderLineDtosToOrderLines(dtos);
+
+        Order order = new Order(orderLines);
+        LocalDate orderDate = LocalDate.of(2023, 12, day);
+
+        Benefits benefits = BenefitCalculationFactory.calculateBenefits(order, orderDate);
+
+        OutputView.printBenefitPreviewMessage(orderDate);
+
+        EventPlanner.printPreview(order, benefits);
+    }
 
     public static List<OrderLineDto> getOrderLineDtos() {
         try {
@@ -14,7 +37,7 @@ public class ChristmasController {
             List<OrderLineDto> dtos = InputView.readMenus();
             validateDuplicateMenus(dtos);
             return dtos;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e);
             return getOrderLineDtos();
         }
@@ -27,7 +50,10 @@ public class ChristmasController {
             int day = InputView.readInteger();
             validateExpectedVisitDate(day);
             return day;
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
+
+            System.out.println(e.getMessage());
+            System.out.println(e.getClass());
             OutputView.printExceptionMessage(e);
             return getExpectedVisitDate();
         }

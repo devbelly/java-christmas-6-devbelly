@@ -23,6 +23,13 @@ public enum PresentItem {
             .orElse(NONE);
     }
 
+    public static PresentItem findByPresentPrice(int presentPrice) {
+        return Arrays.stream(PresentItem.values())
+            .filter(item -> item.price == presentPrice)
+            .findFirst()
+            .orElse(NONE);
+    }
+
     public int getPrice() {
         return price;
     }

@@ -29,12 +29,12 @@ public class Benefits {
     public void updatePresent(Order order) {
         Money money = order.getTotalAmounts();
         PresentItem presentItem = PresentItem.findByTotalPrice(money.getValue());
-        benefits.putIfAbsent(BenefitType.PRESENT, presentItem.getPrice());
+        benefits.put(BenefitType.PRESENT, presentItem.getPrice());
     }
 
     public PresentItem getPresent() {
         int money = benefits.get(BenefitType.PRESENT);
-        return PresentItem.findByTotalPrice(money);
+        return PresentItem.findByPresentPrice(money);
     }
 
     public List<BenefitDto> getBenefitDtos() {

@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import static java.util.Comparator.*;
+import static java.util.Comparator.comparingInt;
 
 import java.util.Arrays;
 

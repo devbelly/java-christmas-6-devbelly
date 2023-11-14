@@ -55,6 +55,14 @@ public class Benefits {
             .reduce(new Money(0), Money::plus);
     }
 
+    public Money getDiscountsAmounts() {
+        return benefits.keySet()
+            .stream()
+            .filter(BenefitType::isPriceDiscount)
+            .map(benefitType -> new Money(benefits.get(benefitType)))
+            .reduce(Money.ZERO, Money::plus);
+    }
+
     public EventBadge getEventBadge() {
         return EventBadge.findByMoney(getTotalBenefitsAmounts().getValue());
     }

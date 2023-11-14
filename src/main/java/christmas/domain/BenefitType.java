@@ -22,4 +22,9 @@ public enum BenefitType {
     public String getTitle() {
         return title;
     }
+
+    public boolean isPriceDiscount() {
+        return this == WEEKDAYS || this == WEEKENDS
+            || this == SPECIAL || this == CHRISTMAS_D_DAY;
+    }
 }

@@ -7,7 +7,6 @@ public enum EventBadge {
     private String title;
 
     EventBadge(int money, String title) {
-
         this.money = money;
         this.title = title;
     }

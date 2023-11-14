@@ -15,7 +15,7 @@ public class InputView {
             String input = Console.readLine();
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DATE_INPUT.getMessage());
         }
     }
 
@@ -24,7 +24,7 @@ public class InputView {
             String input = Console.readLine();
             return StringUtils.splitStringToOrderLines(input);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 }

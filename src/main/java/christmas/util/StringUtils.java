@@ -2,12 +2,11 @@ package christmas.util;
 
 import christmas.domain.MenuDetail;
 import christmas.dtos.OrderLineDto;
+import christmas.view.ErrorMessage;
 import java.util.Arrays;
 import java.util.List;
 
 public class StringUtils {
-
-    private static final String ERROR = "[ERROR] 입력을 다시 확인해주세요.";
 
     private StringUtils() {
 
@@ -21,7 +20,7 @@ public class StringUtils {
                 .toList();
 
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(ERROR);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MENU_INPUT.getMessage());
         }
     }
 
@@ -38,13 +37,13 @@ public class StringUtils {
 
             return new OrderLineDto(MenuDetail.findByTitle(menuDetail), Integer.parseInt(quantity));
         } catch (NumberFormatException e) {
-            throw new NumberFormatException(ERROR);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MENU_INPUT.getMessage());
         }
     }
 
     private static void validateInput(List<String> inputs) {
         if (inputs.size() != 2) {
-            throw new IllegalArgumentException(ERROR);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MENU_INPUT.getMessage());
         }
     }
 }

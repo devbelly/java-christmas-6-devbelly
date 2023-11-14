@@ -89,7 +89,7 @@ public class OutputView {
         System.out.println(PRESENT_MENU);
         String presentItemTitle = presentItem.getTitle();
         if (presentItem != PresentItem.NONE) {
-            presentItemTitle.concat(" 1개");
+            presentItemTitle = presentItemTitle.concat(" 1개");
         }
         System.out.println(presentItemTitle);
         printEmptyLine();

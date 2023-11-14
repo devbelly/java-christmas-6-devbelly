@@ -16,8 +16,11 @@ public class Benefits {
     }
 
     public void updateMenuDiscounts(MenuDiscounts menuDiscounts) {
-        benefits.put(BenefitType.WEEKDAYS, menuDiscounts.sumOfWeekDaysDiscounts().getValue());
-        benefits.put(BenefitType.WEEKENDS, menuDiscounts.sumOfWeekendsDiscounts().getValue());
+        benefits.put(BenefitType.WEEKDAYS,
+            benefits.get(BenefitType.WEEKDAYS) + menuDiscounts.sumOfWeekDaysDiscounts().getValue());
+
+        benefits.put(BenefitType.WEEKENDS,
+            benefits.get(BenefitType.WEEKENDS) + menuDiscounts.sumOfWeekendsDiscounts().getValue());
     }
 
     public void updateTotalDiscounts(TotalDiscounts totalDiscounts) {

@@ -7,6 +7,9 @@ import java.time.LocalDate;
 
 public class MenuDiscount {
 
+    private static final int WEEKDAYS_DISCOUNT = 2023;
+    private static final int WEEKENDS_DISCOUNT = 2023;
+    private static final MenuDiscount NONE = new MenuDiscount(Money.ZERO, MenuDiscountType.NONE);
     private Money money;
     private MenuDiscountType type;
 
@@ -15,22 +18,17 @@ public class MenuDiscount {
         this.type = type;
     }
 
-    private static final MenuDiscount WEEKDAYS_DISCOUNT =
-        new MenuDiscount(new Money(2023), MenuDiscountType.WEEKDAYS);
-
-    private static final MenuDiscount WEEKENDS_DISCOUNT =
-        new MenuDiscount(new Money(2023), MenuDiscountType.WEEKENDS);
-
-    private static final MenuDiscount NONE = new MenuDiscount(Money.ZERO, MenuDiscountType.NONE);
 
     public static MenuDiscount of(OrderLine orderLine, LocalDate localDate) {
         MenuDiscountType type = MenuDiscountType.findByLocalDate(localDate);
 
         if (type == WEEKDAYS && orderLine.isDessert()) {
-            return WEEKDAYS_DISCOUNT;
+            return new MenuDiscount(
+                new Money(WEEKDAYS_DISCOUNT).multiply(orderLine.getQuantity()), WEEKDAYS);
         }
         if (type == WEEKENDS && orderLine.isMain()) {
-            return WEEKENDS_DISCOUNT;
+            return new MenuDiscount(
+                new Money(WEEKENDS_DISCOUNT).multiply(orderLine.getQuantity()), WEEKENDS);
         }
         return NONE;
     }

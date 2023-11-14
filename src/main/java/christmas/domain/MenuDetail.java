@@ -9,7 +9,7 @@ public enum MenuDetail {
 
     CAESAR_SALAD("시저샐러드", new Money(8000)),
 
-    T_BONE_STEAK("T본스테이크", new Money(55000)),
+    T_BONE_STEAK("티본스테이크", new Money(55000)),
 
     BARBECUE_RIBS("바비큐립", new Money(54000)),
 

@@ -4,7 +4,6 @@ import christmas.domain.BenefitCalculationFactory;
 import christmas.domain.Benefits;
 import christmas.domain.EventPlanner;
 import christmas.domain.Order;
-import christmas.domain.OrderLine;
 import christmas.dtos.OrderLineDto;
 import christmas.util.OrderLineMapper;
 import christmas.view.ErrorMessage;
@@ -18,10 +17,9 @@ public class ChristmasController {
     public static void run() {
         OutputView.printWelcomeMessage();
         int day = getExpectedVisitDate();
-        List<OrderLineDto> dtos = getOrderLineDtos();
-        List<OrderLine> orderLines = OrderLineMapper.orderLineDtosToOrderLines(dtos);
 
-        Order order = new Order(orderLines);
+        Order order = getOrder();
+
         LocalDate orderDate = LocalDate.of(2023, 12, day);
 
         Benefits benefits = BenefitCalculationFactory.calculateBenefits(order, orderDate);
@@ -31,15 +29,18 @@ public class ChristmasController {
         EventPlanner.printPreview(order, benefits);
     }
 
-    public static List<OrderLineDto> getOrderLineDtos() {
+    public static Order getOrder() {
         try {
             OutputView.printOrderMenuMessage();
             List<OrderLineDto> dtos = InputView.readMenus();
             validateDuplicateMenus(dtos);
-            return dtos;
+
+            Order order = new Order(OrderLineMapper.orderLineDtosToOrderLines(dtos));
+
+            return order;
         } catch (IllegalArgumentException e) {
             OutputView.printExceptionMessage(e);
-            return getOrderLineDtos();
+            return getOrder();
         }
     }
 

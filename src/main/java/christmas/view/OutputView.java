@@ -78,7 +78,7 @@ public class OutputView {
 
     private static void printOrderLine(OrderLine orderLine) {
         System.out.println(
-            orderLine.getMenuDetail().getTitle() + "  " + orderLine.getQuantity() + "개");
+            orderLine.getMenuDetail().getTitle() + " " + orderLine.getQuantity() + "개");
     }
 
     public static void printEmptyLine() {
